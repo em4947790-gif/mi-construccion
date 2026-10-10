@@ -1,1 +1,4 @@
+// De nominal a efectiva
 =SI(m <= 0; NOD(); ((1 + j / m) ^ m) - 1)
+// De efectiva a nominal
+=SI(m <= 0; NOD(); m * ((1 + i) ^ (1 / m) - 1))
