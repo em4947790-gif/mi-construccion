@@ -2,3 +2,5 @@
 =SI(m <= 0; NOD(); ((1 + j / m) ^ m) - 1)
 // De efectiva a nominal
 =SI(m <= 0; NOD(); m * ((1 + i) ^ (1 / m) - 1))
+//Convierte una tasa a su equivalente exacta en otro plazo (TES_TASA_EQUIV)
+=SI((dias_origen <= 0) + (tasa <= -1); NOD(); ((1 + tasa) ^ (dias_destino / dias_origen)) - 1)
