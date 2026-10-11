@@ -33,3 +33,7 @@
         SUMA(valores_descontados)
     )
 )
+
+// TASA REAL 
+
+=SI((tasa_nominal <= -1) + (inflacion <= -1); NOD(); ((1 + tasa_nominal) / (1 + inflacion)) - 1)
