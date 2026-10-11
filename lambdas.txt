@@ -18,3 +18,18 @@
         monto_final
     )
 )
+
+// CALCULO DE LOS FLUJOS DE EFECTIVO TRAIDOS AL PRESENTE
+    =SI(
+    (FILAS(flujos) <> FILAS(fechas)) + (COLUMNAS(flujos) <> COLUMNAS(fechas));
+    NOD();
+    LET(
+        f_val; SI(ISOMITTED(fecha_val); INDICE(fechas; 1; 1); fecha_val);
+        valores_descontados; MAP(
+            flujos;
+            fechas;
+            LAMBDA(flujo; fecha_f; flujo / ((1 + tea) ^ ((fecha_f - f_val) / 365)))
+        );
+        SUMA(valores_descontados)
+    )
+)
