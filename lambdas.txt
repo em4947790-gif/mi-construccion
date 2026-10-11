@@ -4,3 +4,17 @@
 =SI(m <= 0; NOD(); m * ((1 + i) ^ (1 / m) - 1))
 //Convierte una tasa a su equivalente exacta en otro plazo (TES_TASA_EQUIV)
 =SI((dias_origen <= 0) + (tasa <= -1); NOD(); ((1 + tasa) ^ (dias_destino / dias_origen)) - 1)
+// Calculo del interes compuesto
+=SI(
+    (monto < 0) + (dias_capitalizacion <= 0) + (dias_plazo < 0);
+    NOD();
+    LET(
+        periodos_completos; ENTERO(dias_plazo / dias_capitalizacion);
+        dias_sobrantes; RESIDUO(dias_plazo; dias_capitalizacion);
+        tasa_por_periodo; tasa * (dias_capitalizacion / 360);
+        monto_compuesto; monto * (1 + tasa_por_periodo) ^ periodos_completos;
+        monto_final; monto_compuesto *
+            (1 + (tasa_por_periodo / dias_capitalizacion) * dias_sobrantes);
+        monto_final
+    )
+)
