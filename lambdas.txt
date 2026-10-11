@@ -37,3 +37,11 @@
 // TASA REAL 
 
 =SI((tasa_nominal <= -1) + (inflacion <= -1); NOD(); ((1 + tasa_nominal) / (1 + inflacion)) - 1)
+
+// TEST_TEA_IMPLICITA
+
+=SI(
+    (valor_inicial <= 0) + (valor_final <= 0) + (dias_plazo <= 0);
+    NOD();
+    ((valor_final / valor_inicial) ^ (365 / dias_plazo)) - 1
+)
